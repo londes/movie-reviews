@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import styles from './Review.module.css'
+import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
 
 export const Review = () => {
 
@@ -67,7 +69,9 @@ export const Review = () => {
             </div>
             <button>get a review</button>
         </form>
-        <div>{reviewMarkdown}</div>
+        <div>
+            <ReactMarkdown rehypePlugins={[rehypeRaw]}>{reviewMarkdown}</ReactMarkdown>
+        </div>
     </div>
   )
 }
