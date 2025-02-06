@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import styles from './Review.module.css'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
@@ -10,36 +10,37 @@ export const Review = () => {
         rating: 'great, excellent',
         plot: '',
     })
-
     let [ reviewMarkdown, setReviewMarkdown] = useState('')
+    let [ message, setMessage ] = useState('')
 
-    async function fetchReview(e) {
+    useEffect(() => {
+        console.log('updated markdown: ', reviewMarkdown);
+      }, [reviewMarkdown]);
+
+    let fetchReview = useCallback(async (e) => {
+        if (!formValues.movie || !formValues.plot) {
+            setMessage('Form requires a movie name and a plot synopsis')
+            return
+        }
         e.preventDefault()
-        console.log('in fetch review')
         try{
-            console.log('trying')
+            setMessage('Retrieving a review from Palmyra 🤙 please hold')
             const response = await fetch("/api/proxy");
-            console.log(response)
             const data = await response.json();
-            console.log(data)
-            console.log(data.suggestion);
             setReviewMarkdown(data.suggestion)
-            console.log(reviewMarkdown)
+            setMessage('')
         }
         catch (error) {
-            console.log('catching')
-            console.log(error)
+            console.log('error', error)
         }
-    }
-
-    let submitHandler = e => {
-        e.preventDefault()
-        console.log(e)
-    }
+    }, [formValues])
 
     let changeHandler = e => {
-        setFormValues({...formValues, [e.target.attributes.name.value]: e.target.value})
+        setFormValues({...formValues, [e.target.name]: e.target.value})
+        console.log(formValues)
     }
+
+    let { movie, rating, plot } = formValues
 
   return (
     <div className={styles.container}>
@@ -51,7 +52,7 @@ export const Review = () => {
         >
             <div className={styles.form_item}>
                 <label >Movie Name</label>
-                <input className={styles.input} name="movie" value={formValues.movie} placeholder="Austin Powers" onChange={changeHandler}></input>
+                <input className={styles.input} name="movie" value={movie} placeholder="Austin Powers" onChange={changeHandler}></input>
             </div>
             <div className={styles.form_item}>
                 <label>Movie Rating</label>
@@ -65,10 +66,11 @@ export const Review = () => {
             </div>
             <div className={styles.form_item}>
                 <label>Plot Summary</label>
-                <textarea onChange={changeHandler} name="plot" value={formValues.plot}></textarea>
+                <textarea onChange={changeHandler} name="plot" value={plot}></textarea>
             </div>
-            <button>get a review</button>
+            <button>generate a review</button>
         </form>
+        <div>{message}</div>
         <div>
             <ReactMarkdown rehypePlugins={[rehypeRaw]}>{reviewMarkdown}</ReactMarkdown>
         </div>
