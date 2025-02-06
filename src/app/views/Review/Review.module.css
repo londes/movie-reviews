@@ -25,12 +25,13 @@
 .form_item > textarea {
     margin: 1ex;
     width: 40vw;
-    height: 10vh;
+    height: 15vh;
+    padding: 4px;
 }
 
 .input {
     width: 30vw;
-    height: 2vh;
+    height: 4vh;
     padding: 4px;
 }
 

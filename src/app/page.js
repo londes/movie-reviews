@@ -1,12 +1,12 @@
 'use client'
 
 import Navbar from "@/components/Navbar/Navbar";
-import styles from "./page.module.css";
+import styles from './page.module.css'
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Review } from "@/views/Review/Review";
-import { Chat } from "@/views/Chat/Chat";
-import { Framework } from "@/views/Framework/Framework";
+import { Review } from "./views/Review/Review";
+import { Chat } from "./views/Chat/Chat";
+import { Framework } from "./views/Framework/Framework";
 
 export default function Home() {
   return (
@@ -14,7 +14,7 @@ export default function Home() {
       <Router>
         <Navbar/>
         <Routes>
-          <Route path='/' element={<Review/>}/> {/* this gonna be our web UI using CRUD w writer API */}
+          <Route path='/' element={<Review/>}/>
           <Route path='/movie-chat' element={<Chat/>}/>
           <Route path='/writer-app'element={<Framework/>}/>
         </Routes>

@@ -1,12 +1,7 @@
 import React, {useState} from 'react'
 import styles from './Review.module.css'
-import Writer from 'writer-sdk'
 
 export const Review = () => {
-
-    const client = new Writer({
-        apiKey: process.env.NEXT_PUBLIC_WRITER_API_KEY, // This is the default and can be omitted
-      });
 
     let [ formValues, setFormValues ] = useState({
         movie: '',
@@ -14,18 +9,25 @@ export const Review = () => {
         plot: '',
     })
 
-    async function fetchReview() {
+    let [ reviewMarkdown, setReviewMarkdown] = useState('')
+
+    async function fetchReview(e) {
         e.preventDefault()
         console.log('in fetch review')
-        const response = await client.applications.generateContent('4aeff293-df99-4d7b-af1e-63882ec30b71', {
-            inputs: [
-              { id: 'Movie Name', value: "Austin Powers" },
-              { id: 'Movie Rating', value: "Great, Excellent" },
-              { id: 'Plot Summary', value: "A movie about a spy, and his arch nemesis Dr. Evil" },
-            ],
-          });
-        
-          console.log(response.suggestion);
+        try{
+            console.log('trying')
+            const response = await fetch("/api/proxy");
+            console.log(response)
+            const data = await response.json();
+            console.log(data)
+            console.log(data.suggestion);
+            setReviewMarkdown(data.suggestion)
+            console.log(reviewMarkdown)
+        }
+        catch (error) {
+            console.log('catching')
+            console.log(error)
+        }
     }
 
     let submitHandler = e => {
@@ -65,6 +67,7 @@ export const Review = () => {
             </div>
             <button>get a review</button>
         </form>
+        <div>{reviewMarkdown}</div>
     </div>
   )
 }
