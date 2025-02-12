@@ -5,16 +5,17 @@ const client = new Writer({
   apiKey: process.env.WRITER_API_KEY,
 });
 
-export async function GET() {
+export async function POST(req) {
   try {
-    console.log('in our proxy GET()');
+    console.log('in our proxy POST()');
+    let body = await req.json();
     const response = await client.applications.generateContent(
       '6a7803be-3fbb-470f-a6fa-f2cb93b83eb6',
       {
         inputs: [
-          { id: 'Movie Name', value: ["Austin Powers"] },
-          { id: 'Movie Rating', value: ["Great, Excellent"] },
-          { id: 'Plot Summary', value: ["A movie about a spy, and his arch nemesis Dr. Evil"] },
+          { id: 'Movie Name', value: [body.movie] },
+          { id: 'Movie Rating', value: [body.rating] },
+          { id: 'Plot Summary', value: [body.plot] },
         ],
       }
     );

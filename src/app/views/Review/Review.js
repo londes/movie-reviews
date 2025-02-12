@@ -25,8 +25,15 @@ export const Review = () => {
         e.preventDefault()
         try{
             setMessage('Retrieving a review from Palmyra 🤙 please hold')
-            const response = await fetch("/api/proxy");
+            const response = await fetch("/api/proxy", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formValues)
+            });
             const data = await response.json();
+            console.log('api response: ', data)
             setReviewMarkdown(data.suggestion)
             setMessage('')
         }
@@ -37,10 +44,9 @@ export const Review = () => {
 
     let changeHandler = e => {
         setFormValues({...formValues, [e.target.name]: e.target.value})
-        console.log(formValues)
     }
 
-    let { movie, rating, plot } = formValues
+    let { movie, plot } = formValues
 
   return (
     <div className={styles.container}>
@@ -71,7 +77,7 @@ export const Review = () => {
             <button>generate a review</button>
         </form>
         <div>{message}</div>
-        <div>
+        <div className={styles.output}>
             <ReactMarkdown rehypePlugins={[rehypeRaw]}>{reviewMarkdown}</ReactMarkdown>
         </div>
     </div>
