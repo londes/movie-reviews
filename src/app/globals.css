@@ -30,6 +30,17 @@ body {
   margin: 0;
 }
 
+.app {
+  display:flex;
+  flex-direction:column;
+  padding: 70px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
 a {
   color: inherit;
   text-decoration: none;

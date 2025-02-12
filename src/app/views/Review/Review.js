@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect, useCallback } from 'react'
 import styles from './Review.module.css'
 import ReactMarkdown from 'react-markdown'
@@ -10,12 +12,12 @@ export const Review = () => {
         rating: 'great, excellent',
         plot: '',
     })
-    let [ reviewMarkdown, setReviewMarkdown] = useState('')
+    let [ rMdownTest, setrMdownTest] = useState('')
     let [ message, setMessage ] = useState('')
 
     useEffect(() => {
-        console.log('updated markdown: ', reviewMarkdown);
-      }, [reviewMarkdown]);
+        console.log('updated markdown: ', rMdownTest);
+      }, [rMdownTest]);
 
     let fetchReview = useCallback(async (e) => {
         if (!formValues.movie || !formValues.plot) {
@@ -34,7 +36,7 @@ export const Review = () => {
             });
             const data = await response.json();
             console.log('api response: ', data)
-            setReviewMarkdown(data.suggestion)
+            setrMdownTest(data.suggestion)
             setMessage('')
         }
         catch (error) {
@@ -78,7 +80,7 @@ export const Review = () => {
         </form>
         <div>{message}</div>
         <div className={styles.output}>
-            <ReactMarkdown rehypePlugins={[rehypeRaw]}>{reviewMarkdown}</ReactMarkdown>
+            <ReactMarkdown rehypePlugins={[rehypeRaw]}>{rMdownTest}</ReactMarkdown>
         </div>
     </div>
   )
