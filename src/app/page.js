@@ -40,7 +40,8 @@ export default function Review() {
             setMessage('')
         }
         catch (error) {
-            console.log('error', error)
+          setMessage('server error 😬 please try again')
+          console.log('error', error)
         }
     }, [formValues])
 
