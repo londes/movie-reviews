@@ -1,6 +1,6 @@
 'use client'
 
-import Navbar from "@/components/Navbar/Navbar";
+import Navbar from '../components/Navbar'
 import styles from './page.module.css'
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
