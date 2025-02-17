@@ -7,7 +7,7 @@ export async function POST(req) {
   try {
     console.log('creating writer sdk client')
     const client = new Writer({
-      apiKey: process.env.WRITER_API_KEY,
+      apiKey: `"${process.env.WRITER_API_KEY}"`,
     });
     console.log('in our proxy POST()');
     let body = await req.json();
