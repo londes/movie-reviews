@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import Writer from 'writer-sdk';
 
 const client = new Writer({
-  apiKey: process.env.WRITER_API_KEY,
+  apiKey: "1Gv8lnzKlYjjU8KUPOSRUjdXPh9W2xbh",
 });
 
 export async function POST(req) {
