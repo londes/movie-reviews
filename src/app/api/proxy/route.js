@@ -1,7 +1,7 @@
+export const runtime = 'nodejs'
+
 import { NextResponse } from 'next/server';
 import Writer from 'writer-sdk';
-
-export const runtime = 'nodejs'
 
 export async function POST(req) {
   try {
@@ -11,7 +11,6 @@ export async function POST(req) {
     });
     console.log('in our proxy POST()');
     let body = await req.json();
-    console.log(body)
     const response = await client.applications.generateContent(
       '6a7803be-3fbb-470f-a6fa-f2cb93b83eb6',
       {
