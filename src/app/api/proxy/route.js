@@ -8,6 +8,7 @@ const client = new Writer({
 export async function POST(req) {
   try {
     console.log('in our proxy POST()');
+    console.log(req)
     let body = await req.json();
     console.log(body)
     const response = await client.applications.generateContent(
