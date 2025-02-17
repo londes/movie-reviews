@@ -8,7 +8,6 @@ const client = new Writer({
 export async function POST(req) {
   try {
     console.log('in our proxy POST()');
-    console.log(req)
     let body = await req.json();
     console.log(body)
     const response = await client.applications.generateContent(
@@ -26,6 +25,6 @@ export async function POST(req) {
     return NextResponse.json({ suggestion: response.suggestion });
   } catch (error) {
     console.error('error: ', error);
-    return NextResponse.json({ error: 'internal server error' }, { status: 500 });
+    return NextResponse.json({ error: error }, { status: 500 });
   }
 }
