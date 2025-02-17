@@ -21,6 +21,7 @@ export async function POST(req) {
         ],
       }
     );
+    console.log('full writer response:', response)
     console.log('Writer api response', response.suggestion);
     return NextResponse.json({ suggestion: response.suggestion });
   } catch (error) {
