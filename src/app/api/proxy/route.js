@@ -5,6 +5,8 @@ const client = new Writer({
   apiKey: process.env.WRITER_API_KEY,
 });
 
+console.log('api key: ', process.env.WRITER_API_KEY)
+
 export async function POST(req) {
   try {
     console.log('in our proxy POST()');
