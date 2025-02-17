@@ -19,6 +19,12 @@ export async function POST(req) {
           { id: 'Movie Rating', value: [body.rating] },
           { id: 'Plot Summary', value: [body.plot] },
         ],
+      },
+      {
+        headers: {
+          "Authorization": `Bearer ${process.env.WRITER_API_KEY}`,
+          "Content-Type": "application/json"
+        }
       }
     );
     console.log('full writer response:', response)
