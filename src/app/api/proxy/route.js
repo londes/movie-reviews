@@ -1,5 +1,3 @@
-export const runtime = 'nodejs'
-
 import { NextResponse } from 'next/server';
 import Writer from 'writer-sdk';
 
@@ -29,18 +27,17 @@ export async function POST(req) {
         }
       }
     );
-    console.log('full writer response:', response)
-    if (!response || typeof response !== 'object' || !response.suggestion) {
-      throw new Error('Writer API returned an unexpected response');
-    }
     console.log('Writer api response', response.suggestion);
     return NextResponse.json({ suggestion: response.suggestion });
+    
   } catch (error) {
-    console.error('error: ', error);
+    console.error('server error: ', error.message);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
 
+// optimizations for this functions
+// runtime: 'nodejs' necessary to force node runtime environment
 export const config = {
   api: {
     bodyParser: true,
