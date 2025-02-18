@@ -6,6 +6,8 @@ import Writer from 'writer-sdk';
 export async function POST(req) {
   try {
     console.log('creating writer sdk client')
+    console.log("Using API Key:", process.env["WRITER_API_KEY"] ? "Exists" : "Missing");
+
     const client = new Writer({
       apiKey: process.env["WRITER_API_KEY"],
     });
