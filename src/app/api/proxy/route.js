@@ -7,7 +7,7 @@ export async function POST(req) {
   try {
     console.log('creating writer sdk client')
     const client = new Writer({
-      apiKey: `"${process.env.WRITER_API_KEY}"`,
+      apiKey: process.env.WRITER_API_KEY,
     });
     console.log('in our proxy POST()');
     let body = await req.json();
@@ -19,12 +19,6 @@ export async function POST(req) {
           { id: 'Movie Rating', value: [body.rating] },
           { id: 'Plot Summary', value: [body.plot] },
         ],
-      },
-      {
-        headers: {
-          "Authorization": `Bearer ${process.env.WRITER_API_KEY}`,
-          "Content-Type": "application/json"
-        }
       }
     );
     console.log('full writer response:', response)
