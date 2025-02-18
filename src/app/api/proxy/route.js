@@ -6,10 +6,9 @@ import Writer from 'writer-sdk';
 export async function POST(req) {
   try {
     console.log('creating writer sdk client')
-    console.log("Using API Key:", process.env["WRITER_API_KEY"] ? "Exists" : "Missing");
 
     const client = new Writer({
-      // apiKey: process.env.WRITER_API_KEY,
+      // apiKey: process.env.WRITER_API_KEY,  // commented out API key due to errors, set api key explicitly in header. could it be due to "client" name?
     });
     console.log('in our proxy POST()');
     let body = await req.json();
@@ -25,12 +24,15 @@ export async function POST(req) {
       },
       {
         headers: {
-          "Authorization": `Bearer ${process.env.WRITER_API_KEY}`, // Explicitly pass API Key
+          "Authorization": `Bearer ${process.env.WRITER_API_KEY}`,
           "Content-Type": "application/json"
         }
       }
     );
     console.log('full writer response:', response)
+    if (!response || typeof response !== 'object' || !response.suggestion) {
+      throw new Error('Writer API returned an unexpected response');
+    }
     console.log('Writer api response', response.suggestion);
     return NextResponse.json({ suggestion: response.suggestion });
   } catch (error) {
