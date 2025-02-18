@@ -20,11 +20,11 @@ export default function Review() {
       }, [rMdownTest]);
 
     let fetchReview = useCallback(async (e) => {
+        e.preventDefault()
         if (!formValues.movie || !formValues.plot) {
             setMessage('Form requires a movie name and a plot synopsis')
             return
         }
-        e.preventDefault()
         try{
             setMessage('Retrieving a review from Palmyra 🤙 please hold')
             const response = await fetch("/api/proxy", {
