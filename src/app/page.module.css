@@ -37,7 +37,8 @@
 
 .form > button {
   margin: 2vh 0;
-  width: 20vw;
+  width: 15vw;
+  padding: .5ex;
 }
 
 .output {
