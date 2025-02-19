@@ -43,3 +43,56 @@
 .output {
   width: 70vw;
 }
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: bold;
+  color: gray;
+  margin-left: 5px;
+  border: 3px solid lightgray;
+  background-color: lightgray;
+  border-radius: 20px;
+  padding:5px;
+  font-style: italic;
+}
+
+.tooltip::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: transparent;
+}
+
+.tooltip_text {
+  visibility: hidden;
+  width: 220px;
+  background-color: lightgray;
+  color: gray;
+  text-align: center;
+  padding: 8px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%; /* Position above the tooltip */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: auto;
+  font-style: normal;
+}
+
+.tooltip_text a {
+  color: rgb(3, 192, 255);
+}
+
+.tooltip:hover .tooltip_text,
+.tooltip_text:hover {
+  visibility: visible;
+  opacity: 1;
+}

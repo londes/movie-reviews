@@ -74,7 +74,15 @@ export default function Review() {
                 </select>
             </div>
             <div className={styles.form_item}>
-                <label>Plot Summary</label>
+                <label className={styles.plot_summary}>Plot Summary
+                  <span className={styles.tooltip}>
+                    i
+                    <span className={styles.tooltip_text}>
+                      A short blurb about the movie. Try an <a href="https://www.imdb.com/title/tt0118655/plotsummary/?ref_=tt_stry_pl#synopsis">iMDB synopsis</a>.
+
+                    </span>
+                  </span>
+                </label>
                 <textarea onChange={changeHandler} name="plot" value={plot}></textarea>
             </div>
             <button>generate a review</button>
