@@ -60,7 +60,7 @@ export default function Review() {
             autoComplete="off"  
         >
             <div className={styles.form_item}>
-                <label >Movie Name</label>
+                <label>Movie Name</label>
                 <input className={styles.input} name="movie" value={movie} placeholder="Austin Powers" onChange={changeHandler}></input>
             </div>
             <div className={styles.form_item}>
@@ -78,8 +78,7 @@ export default function Review() {
                   <span className={styles.tooltip}>
                     i
                     <span className={styles.tooltip_text}>
-                      A short blurb about the movie. Try an <a href="https://www.imdb.com/title/tt0118655/plotsummary/?ref_=tt_stry_pl#synopsis">iMDB synopsis</a>.
-
+                      A summary or synopsis of the movie plot. Try an <a href="https://www.imdb.com/title/tt0118655/plotsummary/?ref_=tt_stry_pl#synopsis">iMDB synopsis</a>
                     </span>
                   </span>
                 </label>
