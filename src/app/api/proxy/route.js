@@ -6,7 +6,7 @@ export async function POST(req) {
     console.log('creating writer sdk client')
 
     const client = new Writer({
-      // apiKey: process.env.WRITER_API_KEY,  // commented out API key due to errors, set api key explicitly in header. could it be due to "client" name?
+      apiKey: process.env.WRITER_API_KEY,  // commented out API key due to errors, set api key explicitly in header. could it be due to "client" name?
     });
     console.log('in our proxy POST()');
     let body = await req.json();
@@ -19,13 +19,13 @@ export async function POST(req) {
           { id: 'Plot Summary', value: [body.plot] },
           { id: 'Movie Poster, Thumbnail, or Still - Test, WIP', value: []}
         ],
-      },
-      {
-        headers: {
-          "Authorization": `Bearer ${process.env.WRITER_API_KEY}`,
-          "Content-Type": "application/json"
-        }
-      }
+      }//,
+      // {
+      //   headers: {
+      //     "Authorization": `Bearer ${process.env.WRITER_API_KEY}`,
+      //     "Content-Type": "application/json"
+      //   }
+      // }
     );
     console.log('Writer api response', response.suggestion);
     return NextResponse.json({ suggestion: response.suggestion });
