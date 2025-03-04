@@ -21,21 +21,23 @@
     margin-top: 10px;
   }
 
-  .chat_container > input {
+  .input_container > input {
     flex-grow: 1;
     padding: 5px;
   }
 
-  .chat_container > button {
+  .input_container > button {
     padding: 5px 10px;
   }
 
   .user {
+    margin: 1ex;
     text-align: right;
-    color: blue;
+    color: rgb(78, 78, 255);
   }
 
   .assistant {
+    margin: 1ex;
     text-align: left;
-    color: green;
+    color: rgb(52, 95, 52);
   }

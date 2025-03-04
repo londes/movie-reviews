@@ -50,7 +50,7 @@ export default function ChatWindow() {
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    placeholder="Type a message..."
+                    placeholder="type a message..."
                 />
                 <button>Send</button>
             </form>
