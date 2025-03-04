@@ -17,16 +17,16 @@ export default function ChatWindow() {
       setInput("")
   
       try {
-        const response = await fetch ("/api/chat", {
-          method: POST,
+        let response = await fetch ("/api/chat", {
+          method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({ messages: [...messages, userMessage]})
         })
   
-        const data = await response.json();
-        const aiMessage = { role: "assistance", content: data.reply}
+        let data = await response.json();
+        let aiMessage = { role: "assistance", content: data.reply}
         setMessages((prev)=>[...prev, aiMessage])
       }
       catch (error) {
