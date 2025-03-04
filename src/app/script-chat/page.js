@@ -8,7 +8,7 @@ import ChatWindow from '../../components/ChatWindow/ChatWindow'
 export default function ScriptChat() {
   return (
     <div className={styles.chat_container}>
-      <p>ScriptChat mayne</p>
+      <p>Palmyra Talks Movie Scripts</p>
       <ChatWindow />
     </div>
   )

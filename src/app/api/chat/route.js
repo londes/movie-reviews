@@ -9,16 +9,17 @@ export async function POST(req) {
   console.log('in our post')
   try {
     const { messages } = await req.json()
+    console.log(messages)
 
-    const response = await writer.chat.completions.create({
-        model: "Palmyra X 004",
+    const response = await writer.chat.chat({
+        model: 'palmyra-x-004',
         messages: messages,
     })
     return Response.json({
         reply: response.choices?.[0]?.message?.content || "No response",
       });
   }catch(error){
-    console.error({ error: "failed to fetch ai response"}, {status: 500})
+    console.error({ error: error.message}, {status: 500})
     return Response.json({ error: "failed to fetch ai response" }, { status: 500 });
   }
 }

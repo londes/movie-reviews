@@ -26,7 +26,7 @@ export default function ChatWindow() {
         })
   
         let data = await response.json();
-        let aiMessage = { role: "assistance", content: data.reply}
+        let aiMessage = { role: "assistant", content: data.reply}
         setMessages((prev)=>[...prev, aiMessage])
       }
       catch (error) {
