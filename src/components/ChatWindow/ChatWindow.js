@@ -6,7 +6,8 @@ export default function ChatWindow() {
     let [ messages, setMessages ] = useState([])
     let [ input, setInput ] = useState("")
   
-    let sendMessage = async () => {
+    let sendMessage = async (e) => {
+      e.preventDefault()
       // if no input, do nothing
       if (!input.trim()) return
   
@@ -39,20 +40,20 @@ export default function ChatWindow() {
             <div className={styles.messages}>
             {messages.map((msg, index) => (
                 <div key={index} className={msg.role === "user" ? styles.user : styles.assistant}>
-                    <strong>{msg.role === "user" ? "You: " : "AI: "}</strong>
+                    <strong>{msg.role === "user" ? "you: " : "palmyra: "}</strong>
                     {msg.content}
                 </div>
             ))}
             </div>
-            <div className={styles.input_container}>
-            <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Type a message..."
-            />
-            <button onClick={sendMessage}>Send</button>
-            </div>
+            <form className={styles.input_container} onSubmit={sendMessage}>
+                <input
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Type a message..."
+                />
+                <button>Send</button>
+            </form>
         </div>
     )
 }
