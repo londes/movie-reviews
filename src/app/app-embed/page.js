@@ -9,7 +9,7 @@ export default function AppEmbed () {
       <iframe
         src="https://embed.writer.com/text-generation/GOPLcss5Prts5RZlWaS6hQEGm8qceonLajIoLjeLyvA"
         width="800"
-        height="900"
+        height="600"
         style={{
           background: 'white',
           borderRadius: '8px',
