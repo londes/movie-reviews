@@ -9,14 +9,25 @@ export default function AppEmbed () {
       <iframe
         src="https://embed.writer.com/text-generation/GOPLcss5Prts5RZlWaS6hQEGm8qceonLajIoLjeLyvA"
         width="800"
+        height="900"
+        style={{
+          background: 'white',
+          borderRadius: '8px',
+          border: 'none',
+          boxShadow: '5px 5px 24px 0px #0000001F',
+        }}>
+      </iframe>
+      <iframe
+        src="https://embed.writer.com/research-assistant/kDsvJEbtXymawT6GCl7Y674KdviyOgPejX3Gz5hZlps" 
+        width="800" 
         height="600"
         style={{
           background: 'white',
           borderRadius: '8px',
           border: 'none',
           boxShadow: '5px 5px 24px 0px #0000001F',
-        }}
-    ></iframe>
+        }}>
+      </iframe>
     </div>
   )
 }
