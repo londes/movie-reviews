@@ -19,13 +19,7 @@ export async function POST(req) {
           { id: 'Plot Summary', value: [body.plot] },
           { id: 'Movie Poster, Thumbnail, or Still - Test, WIP', value: []}
         ],
-      }//,
-      // {
-      //   headers: {
-      //     "Authorization": `Bearer ${process.env.WRITER_API_KEY}`,
-      //     "Content-Type": "application/json"
-      //   }
-      // }  
+      }
     );
     console.log('Writer api response', response.suggestion);
     return NextResponse.json({ suggestion: response.suggestion });

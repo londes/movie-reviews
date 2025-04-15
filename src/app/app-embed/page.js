@@ -28,6 +28,16 @@ export default function AppEmbed () {
           boxShadow: '5px 5px 24px 0px #0000001F',
         }}>
       </iframe>
+      <iframe 
+        src="https://embed.writer.com/chat/l67qc7eYDzUj7aUhgiUlDxj9cQ_wCHGKllVLeSh6gVg" 
+        width="800" 
+        height="600"
+        style={{
+          background: 'white',
+          borderRadius: '8px',
+          border: 'none',
+          boxShadow: '5px 5px 24px 0px #0000001F',
+        }}></iframe>
     </div>
   )
 }
