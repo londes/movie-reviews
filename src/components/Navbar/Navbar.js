@@ -10,6 +10,7 @@ export default function Navbar() {
       <div className={styles.nav_header}><Link href='/'><h2>Movie Reviews</h2></Link></div>
       <div className={styles.nav_header}><Link href='/script-chat'><h2>Scripts Chat</h2></Link></div>
       <div className={styles.nav_header}><Link href='/app-embed'><h2>App Embed</h2></Link></div>
+      <div className={styles.nav_header}><Link href='/file-upload'><h2>File Upload</h2></Link></div>
     </div>
   )
 }

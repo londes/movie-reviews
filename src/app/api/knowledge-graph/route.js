@@ -15,7 +15,7 @@ export async function POST(req) {
   }
 }
 
-// optimizations for this functions
+// optimizations for this function
 // runtime: 'nodejs' necessary to force node runtime environment
 export const config = {
   api: {
