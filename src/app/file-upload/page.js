@@ -3,6 +3,8 @@
 import React, { useState, useCallback } from 'react'
 import styles from './page.module.css'
 
+import FileList from '../../components/FileList/FileList'
+
 export default function FileUpload() {
 
     let [ formValues, setFormValues ] = useState({
@@ -11,6 +13,7 @@ export default function FileUpload() {
     })
     let [ file, setFile ] = useState (null)
     let [ message, setMessage ] = useState('')
+    // let [ filesMessage, setFilesMessage ] = useState('')
 
     let handleSubmit = useCallback(async (e) => {
         e.preventDefault()
@@ -31,8 +34,8 @@ export default function FileUpload() {
                 body: submitData
             });
             const data = await response.json();
+            setMessage(`successfully uploaded ${data.uploadedFile.name} to Writer with file id: ${data.uploadedFile.id}`)
             console.log(data)
-            setMessage(data.status)
         }
         catch (error) {
             setMessage('server error 😬 please try again')
@@ -48,10 +51,6 @@ export default function FileUpload() {
     let handleFileChange = e => {
         e.preventDefault()
         setFile(e.target.files[0])
-    }
-
-    let uploadFile = () => {
-        return ''
     }
 
   return (
@@ -70,14 +69,10 @@ export default function FileUpload() {
                 <label>Add File to Upload</label>
                 <input type="file" onChange={handleFileChange}/>
             </div>
-            <div className={styles.form_item}>
-                <label>Desired File Name (optional)</label> 
-                {/* todo: add tooltip explaining optional-ness and behavior here */}
-                <input className={styles.input} name="fileName" value={formValues.fileName} placeholder="some_file_name.txt" onChange={changeHandler}/>
-            </div>
             <button>submit file to writer</button>
         </form>
         <div>{message}</div>
+        {/* <FileList/> */}
     </div>
   )
 }

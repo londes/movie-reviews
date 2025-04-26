@@ -30,7 +30,7 @@ export async function POST(req) {
         console.log('Files:', files)
 
         let apiKey = fields.apiKey
-        let nameOfFile = files.file.originalFilename
+        let nameOfFile = files.file[0].originalFilename
         let filePath = files.file[0].filepath
         let contentType = files.file[0].mimetype
 
