@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback } from 'react'
 import styles from './page.module.css'
+import UploadFile from '../../components/UploadFile/UploadFile'
 
 import FileList from '../../components/FileList/FileList'
 
@@ -17,6 +18,7 @@ export default function FileUpload() {
 
     let handleSubmit = useCallback(async (e) => {
         e.preventDefault()
+        console.log(formValues.apiKey, file)
         if (!formValues.apiKey || !file) {
             setMessage('Form requires an api key and a file')
             return
@@ -38,7 +40,7 @@ export default function FileUpload() {
             console.log(data)
         }
         catch (error) {
-            setMessage('server error 😬 please try again')
+            setMessage('server error 😬 please try again, and ensure your api key is correct')
             console.log('error', error)
         }
     }, [formValues, file])
@@ -55,24 +57,19 @@ export default function FileUpload() {
 
   return (
     <div className={styles.container}>
-        <div>Upload a File</div>
-        <form
+        {/* todo: implement an accordion dropdown allowing user to select UploadFile or FileList */}
+        <UploadFile
+            formValues={formValues}
+            setFormValues={setFormValues}
+            file={file}
+            setFile={setFile}
+            message={message}
             onSubmit={handleSubmit}
-            className={styles.form}
-            autoComplete="off"  
-        >
-            <div className={styles.form_item}>
-                <label>API Key</label>
-                <input className={styles.input} name="apiKey" value={formValues.apiKey} placeholder="your_writer_api_key_12345" onChange={changeHandler}/>
-            </div>
-            <div className={styles.form_item}>
-                <label>Add File to Upload</label>
-                <input type="file" onChange={handleFileChange}/>
-            </div>
-            <button>submit file to writer</button>
-        </form>
-        <div>{message}</div>
-        {/* <FileList/> */}
+            onChange={changeHandler}
+            onFileChange={handleFileChange}
+        />
+        {/* FileList will hit Writer /files/list endpoint, and allow Download / Delete functionality */}
+        {/* <FileList></> */}
     </div>
   )
 }
