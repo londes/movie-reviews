@@ -9,7 +9,8 @@ export async function POST(req) {
   console.log('in our post')
   try {
     const { messages } = await req.json()
-    console.log(messages)
+    console.log('Messages received:', messages)
+    console.log('API Key exists:', !!process.env.WRITER_API_KEY)
 
     const response = await writer.chat.chat({
         model: 'palmyra-x-004',
@@ -19,7 +20,9 @@ export async function POST(req) {
         reply: response.choices?.[0]?.message?.content || "No response",
       });
   }catch(error){
-    console.error({ error: error.message}, {status: 500})
+    console.error('Full error details:', error)
+    console.error('Error message:', error.message)
+    console.error('Error response:', error.response?.data)
     return Response.json({ error: "failed to fetch ai response" }, { status: 500 });
   }
 }

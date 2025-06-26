@@ -10,22 +10,32 @@ export async function POST(req) {
     });
     console.log('in our proxy POST()');
     let body = await req.json();
+    console.log('Request body received:', body);
+    
+    // Validate inputs before sending
+    const inputs = [
+      { id: 'Movie Name', value: [body.movie] },
+      { id: 'Movie Rating', value: [body.rating] },
+      { id: 'Plot Summary', value: [body.plot] }
+    ];
+    
+    console.log('Inputs being sent to Writer API:', inputs);
+    console.log('Application ID:', '6a7803be-3fbb-470f-a6fa-f2cb93b83eb6');
+    
     const response = await client.applications.generateContent(
       '6a7803be-3fbb-470f-a6fa-f2cb93b83eb6',
       {
-        inputs: [
-          { id: 'Movie Name', value: [body.movie] },
-          { id: 'Movie Rating', value: [body.rating] },
-          { id: 'Plot Summary', value: [body.plot] },
-          { id: 'Movie Poster, Thumbnail, or Still - Test, WIP', value: []}
-        ],
+        inputs: inputs,
       }
     );
     console.log('Writer api response', response.suggestion);
     return NextResponse.json({ suggestion: response.suggestion });
     
   } catch (error) {
-    console.error('server error: ', error.message);
+    console.error('Full error object:', error);
+    console.error('Error message:', error.message);
+    console.error('Error response data:', error.response?.data);
+    console.error('Error status:', error.response?.status);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
